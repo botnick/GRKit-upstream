@@ -27,7 +27,7 @@ pub const TEXT_GROUP_VALUE: usize = TEXT_SETTINGS - 2 * GROUP_UNITS;
 /// The units of the longest string with its NUL, and of each summary slot.
 pub const SUMMARY_UNITS: usize = 32;
 /// The number of strings in each language (`GRKIT_TEXT_STRINGS`).
-pub const STRINGS: usize = 87;
+pub const STRINGS: usize = 92;
 /// The project address that About GRKit shows.
 const PROJECT: &str = "github.com/ahonn/grkit";
 /// The longest effect name in a record.
@@ -168,6 +168,10 @@ struct Words {
     /// seven are the types of GR IV Monochrome, with the names of its
     /// firmware.
     native_types: [&'static str; 21],
+    /// The GRKit Settings row of an update over Wi-Fi that waits for its
+    /// confirmation, which About GRKit also opens; its values: not now, and
+    /// install it; then the confirm before and after the version.
+    update: [&'static str; 5],
 }
 
 const ENGLISH: Words = Words {
@@ -249,6 +253,7 @@ const ENGLISH: Words = Words {
         "HDR Tone",
         "Solarized Effect",
     ],
+    update: ["Update", "Later", "Install", "Install GRKit ", "?"],
 };
 
 const SIMPLIFIED_CHINESE: Words = Words {
@@ -327,6 +332,7 @@ const SIMPLIFIED_CHINESE: Words = Words {
         "HDR色调",
         "中途曝光效果",
     ],
+    update: ["更新", "稍后", "安装", "安装 GRKit ", "？"],
 };
 
 const TRADITIONAL_CHINESE: Words = Words {
@@ -405,6 +411,7 @@ const TRADITIONAL_CHINESE: Words = Words {
         "HDR色調",
         "中途曝光效果",
     ],
+    update: ["更新", "稍後", "安裝", "安裝 GRKit ", "？"],
 };
 
 const JAPANESE: Words = Words {
@@ -488,6 +495,13 @@ const JAPANESE: Words = Words {
         "HDR調",
         "ソラリゼーション調",
     ],
+    update: [
+        "アップデート",
+        "後で",
+        "インストール",
+        "GRKit ",
+        " をインストールしますか？",
+    ],
 };
 
 const KOREAN: Words = Words {
@@ -568,6 +582,13 @@ const KOREAN: Words = Words {
         "솔리드",
         "HDR톤",
         "솔라리제이션톤",
+    ],
+    update: [
+        "업데이트",
+        "나중에",
+        "설치",
+        "GRKit ",
+        " 설치를 진행할까요?",
     ],
 };
 
@@ -736,6 +757,13 @@ pub const RUNS: &[Run] = &[
         "The Effect Icons in Playback row of Display Settings. Its values are TEXT_OFF and \
          TEXT_ON.",
     ),
+    run(
+        "UPDATE",
+        5,
+        "The GRKit Settings row of an update over Wi-Fi that waits for its \
+         confirmation, then its values Later and Install, then the text of its \
+         confirm before and after the version.",
+    ),
 ];
 
 /// The first string ID of each run, in table order.
@@ -828,6 +856,7 @@ fn run_strings(w: &Words, name: &str, version: &str) -> Vec<String> {
         "DISPLAY" => words(&[w.display_settings, w.shooting_settings, w.shutdown_settings]),
         "GOODBYE" => words(&[w.shutdown_screen, w.shutdown_text]),
         "PLAYBACK_INFO" => words(&[w.playback_info]),
+        "UPDATE" => words(&w.update),
         _ => unreachable!("Unknown menu text run {name}"),
     }
 }
