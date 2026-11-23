@@ -845,14 +845,6 @@ impl AppState {
         });
     }
 
-    /// The person restarts the camera: the sheet says how, then offers to
-    /// reconnect.
-    pub fn restart_manually(self) {
-        self.phase.set(UpdatePhase::ManualRestart {
-            kind: self.update_kind.get(),
-        });
-    }
-
     /// Reconnect after the person restarted the camera: the camera tab runs
     /// its usual connect, and the update goes on from what the camera answers.
     pub fn reconnect_for_update(self) {

@@ -255,6 +255,7 @@ fn start_phone_with_delays(
                 "bootId": "boot-test"
             }),
             ("POST", "http://camera.test/v1/device/wlan/finish") => json!({"errCode": 200}),
+            ("POST", "http://camera.test/v1/device/finish") => json!({"errCode": 200}),
             ("POST", "http://camera.test/v1/update/cancel") => {
                 require_context(&request);
                 let id = camera.request_id.take().expect("an update waits");
@@ -291,6 +292,9 @@ fn start_phone_with_delays(
     (app, camera, network)
 }
 
+/// Longer than the wait for a camera in standby.
+const MANUAL_RESTART_WAIT: Duration = Duration::from_secs(40);
+
 #[test]
 fn an_update_whose_answer_was_lost_is_found_on_the_camera_and_completes() {
     let _lock = ENV_LOCK.lock().unwrap_or_else(|e| e.into_inner());
@@ -308,11 +312,14 @@ fn an_update_whose_answer_was_lost_is_found_on_the_camera_and_completes() {
         camera.version = "1.8.0";
         camera.request_id = None;
     }
-    // The restart the person runs, then a reconnect.
-    app.press("Restart Manually").unwrap();
+    // No camera answers in standby, so the person restarts it and reconnects.
+    app.press("Restart Camera").unwrap();
     // The sheet only says what to do: no steps and no progress.
-    app.wait_for_within("Turn the camera off and on, then tap Reconnect.", WAIT)
-        .unwrap();
+    app.wait_for_within(
+        "Turn the camera off and on, then tap Reconnect.",
+        MANUAL_RESTART_WAIT,
+    )
+    .unwrap();
     app.wait_for_gone("Restart Camera", WAIT).unwrap();
     app.wait_for_gone("Download update", WAIT).unwrap();
     app.press("Reconnect").unwrap();

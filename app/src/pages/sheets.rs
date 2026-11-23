@@ -1196,9 +1196,6 @@ fn update_buttons(
             .child(sheet_primary_button(tr("restart.run", &[]), move || {
                 app.restart_for_update()
             }))
-            .child(secondary_button(tr("restart.manual", &[]), move || {
-                app.restart_manually()
-            }))
             .child(secondary_button(tr("update.cancel", &[]), move || {
                 app.ask_cancel_update()
             }))

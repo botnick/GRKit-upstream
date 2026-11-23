@@ -365,10 +365,9 @@ fn layouts(draft: Signal<Option<Film>>) -> impl IntoElement {
                                     if selected {
                                         theme().foreground
                                     } else {
-                                        crate::ui::control_border()
+                                        token("grouped")
                                     }
                                 })
-                                .bg(move || theme().card)
                                 .role(AccessibilityRole::Radio)
                                 .label(tr(layout_key(layout), &[]))
                                 .accessibility_state(move || AccessibilityState {

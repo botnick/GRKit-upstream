@@ -1072,9 +1072,6 @@ restart.auto_body:
 restart.run:
   en: "Restart Camera"
   zh-CN: "重启相机"
-restart.manual:
-  en: "Restart Manually"
-  zh-CN: "手动重启"
 restart.title:
   en: "Restart the Camera"
   zh-CN: "重启相机"
