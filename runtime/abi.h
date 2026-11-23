@@ -183,7 +183,7 @@
 /* Icon slots: the host icons, then the effect icons, then the module tiles, in
    chunks of GRKIT_ICONS_PER_CHUNK (GRKIT_HOST_ICON_CHUNKS).
    GRKIT_ICON_MODULE_TILE(n) is the icon ID of module tile n. */
-#define GRKIT_HOST_ICON_COUNT 21
+#define GRKIT_HOST_ICON_COUNT 22
 #define GRKIT_ICONS_PER_CHUNK 40
 #define GRKIT_MODULE_TILES_MAX 128
 #define GRKIT_ICON_MODULE_TILE(n) (0x7000U+(n))
@@ -196,7 +196,7 @@
 #define GRKIT_UPDATE_READY 3U
 #define GRKIT_CUE_PENDING 1U
 #define GRKIT_CUE_UPDATE_READY 1U
-#define GRKIT_CUE_UPDATED 2U
+#define GRKIT_CUE_UPDATE_RESTART 2U
 /* Number of Image Control records. */
 #define GRKIT_HOST_COUNT 0
 /* Address of record 0. The records follow the header without gaps. */
@@ -588,8 +588,8 @@
    8, and patch, or 0 when the package does not name it. */
 #define GRKIT_HOST_UPDATE_VERSION 6556
 /* The text of the load cue (GRKIT_HOST_LOAD_CUE): 0 for GRKit Loaded,
-   CUE_UPDATE_READY while an update over Wi-Fi waits, or CUE_UPDATED at the
-   first start after one installed. The cue sets it back to 0 when it ends
+   CUE_UPDATE_READY while an update over Wi-Fi waits, or CUE_UPDATE_RESTART
+   after its confirmation in ADJ. The cue sets it back to 0 when it ends
    (runtime/viewfinder.h). */
 #define GRKIT_HOST_CUE_LABEL 6560
 /* 1 while the Wi-Fi access point of the camera is on, else 0. The App task
@@ -1173,9 +1173,9 @@
    TEXT_OFF and TEXT_ON. */
 #define TEXT_PLAYBACK_INFO 86
 /* The GRKit Settings row of an update over Wi-Fi that waits for its
-   confirmation, then its values Later and Install, then the text of its
-   confirm before and after the version. */
+   confirmation, then its value Install, then the text of its confirm before
+   and after the version. */
 #define TEXT_UPDATE 87
-#define GRKIT_TEXT_STRINGS 92
+#define GRKIT_TEXT_STRINGS 91
 
 #endif

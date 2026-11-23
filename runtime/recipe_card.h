@@ -28,8 +28,8 @@
    installer writes from its artwork (runtime/installer.c:
    write_host_icons). */
 #define RECIPE_CARD_BASE 8U
-_Static_assert(RECIPE_CARD_BASE+1U+RECIPE_CARD_SLOTS==GRKIT_HOST_ICON_COUNT,
-               "the host icons end with the base tile of recipes and their slots");
+_Static_assert(RECIPE_CARD_BASE+1U+RECIPE_CARD_SLOTS+1U==GRKIT_HOST_ICON_COUNT,
+               "the host icons end with the base tile of recipes, their slots, and Update");
 _Static_assert(GRKIT_RECIPE_SLOTS<=0x100U,"the icon IDs of recipes stay below the core labels");
 
 /* The abbreviation of recipe e: of the name that the person gave, else of
