@@ -1,3 +1,10 @@
+## 1.7.0 (2026-11-24)
+
+### Features
+
+- Battery Percentage in Display Settings shows the battery charge as a number in steps of 2 %.
+- GR II Positive, the Positive Film of GR II, is a film look for GR III, GR IIIx, and GR IV that the site makes from your GR II firmware file.
+
 ## 1.6.6 (2026-11-22)
 
 ### Fixes
